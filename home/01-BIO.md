@@ -31,7 +31,6 @@
   "description": "I'm a Computer Science student at the University of Manitoba, working at the intersection of machine learning, software engineering, and sustainable computing. My published work explores how agentic AI systems handle software energy concerns, and my undergraduate thesis introduced a transformer-enhanced Siamese network for semantic relatedness. I enjoy turning research ideas into real, working systems — from neural authentication tools to full-stack web platforms.",
   "location": "Winnipeg, Manitoba, Canada",
   "email": "mazumdmm@myumanitoba.ca",
-  "phone": "+1 431-458-8900",
   "image": "assets/masud.jpg",
   "resume": "assets/MasudCV.pdf",
   "github": "masud70",

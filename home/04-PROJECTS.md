@@ -24,7 +24,7 @@
     "date": "2024",
     "description": "An end-to-end waste-management platform built for Dhaka North City Corporation. Provides user authentication, an administrator monitoring dashboard, real-time stats, vehicle/fleet management, and a companion community-interaction mobile app.\n\nTech Stack: React, Node.js/Express, MongoDB, React Native.",
     "tags": ["Full-Stack", "React", "Node.js", "MongoDB", "Mobile"],
-    "icon": "cpu",
+    "icon": "sprout",
     "link": "https://github.com/masud70/EcoSync",
     "role": "Lead developer",
     "stack": "React, Node.js, MongoDB, React Native"
@@ -35,7 +35,7 @@
     "date": "2024",
     "description": "A flexible Node.js library designed to make it easy to embed a code compiler into any web or desktop application. Supports multiple languages and both online and offline execution modes. Useful for coding-practice platforms, educational tools, and in-browser editors.",
     "tags": ["Node.js", "Developer Tools", "Library"],
-    "icon": "terminal",
+    "icon": "cpu",
     "link": "https://github.com/masud70/qCompiler",
     "role": "Solo author"
   },
@@ -45,7 +45,7 @@
     "date": "2023",
     "description": "A management system for Regional Training Center (RTC) Barishal where the authentication layer uses a neural-network model for identity verification, integrated end-to-end with a standard web stack. Combines AI model deployment with production web infrastructure.",
     "tags": ["Authentication", "Web Development", "Full Stack"],
-    "icon": "brain",
+    "icon": "square-chart-gantt",
     "link": "https://github.com/masud70/RTCDSSBSL"
   },
   {

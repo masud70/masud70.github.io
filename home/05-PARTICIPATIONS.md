@@ -34,7 +34,8 @@
     "description": "Ranked 102 in Canada in IEEE's flagship global programming competition — a 24-hour online contest drawing tens of thousands of participants worldwide.",
     "tags": ["Competitive Programming", "IEEE"],
     "icon": "zap",
-    "placement": "Ranked 102 (Canada) - (as team)"
+    "placement": "Ranked 102 (Canada) - (as team)",
+    "images": ["assets/ieeextreme.png"]
   },
   {
     "title": "Code Samurai 2024 — Finalist",
