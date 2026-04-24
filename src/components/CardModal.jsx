@@ -231,7 +231,7 @@ function ModalBody({ item, onClose }) {
         {galleryImages.length > 0 && <Gallery images={galleryImages} />}
 
         {nonEmpty(description) && (
-          <p className="text-[15px] text-fog-200 leading-relaxed whitespace-pre-line">
+          <p className="text-[15px] text-fog-200 leading-relaxed whitespace-pre-line text-justify">
             {scalar(description)}
           </p>
         )}

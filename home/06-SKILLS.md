@@ -12,7 +12,7 @@
 [
   {
     "category": "Languages",
-    "items": ["C", "C++", "Python", "JavaScript", "PHP"]
+    "items": ["C", "C++", "Python", "Java", "JavaScript", "PHP"]
   },
   {
     "category": "Databases",
@@ -28,6 +28,6 @@
   },
   {
     "category": "Tools & Workflow",
-    "items": ["Git & GitHub", "LaTeX", "Linux"]
+    "items": ["Git & GitHub", "LaTeX"]
   }
 ]

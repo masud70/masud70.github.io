@@ -169,7 +169,7 @@ export default function InfoCard({ item, index = 0, onOpen }) {
           )}
 
           {nonEmpty(description) && (
-            <p className="text-[15px] text-fog-200/90 leading-relaxed mt-1 whitespace-pre-line">
+            <p className="text-[15px] text-fog-200/90 leading-relaxed mt-1 whitespace-pre-line text-justify">
               {clip(scalar(description))}
             </p>
           )}

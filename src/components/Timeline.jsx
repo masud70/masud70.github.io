@@ -34,7 +34,7 @@ export default function Timeline({ items, sectionTitle, sectionFile, onOpen, see
         {/* Neon spine — height now shrinks to card rows only, not the See-more button */}
         <div
           aria-hidden
-          className="absolute top-2 bottom-2 left-3 md:left-4 w-px bg-gradient-to-b from-em-500/0 via-em-500/70 to-em-500/0"
+          className="absolute top-2 bottom-2 left-3 md:left-3 w-px bg-gradient-to-b from-em-500/0 via-em-500/70 to-em-500/0"
         />
         <div
           aria-hidden

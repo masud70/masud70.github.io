@@ -17,41 +17,40 @@
 # DATA
 [
   {
-    "title": "EcoSync — Dhaka North City Waste Management",
-    "subtitle": "Full-stack web + mobile platform",
+    "title": "EcoSync",
+    "subtitle": "Waste-management platform for Dhaka North City Corporation",
     "date": "2024",
-    "description": "A production-grade waste-management platform built for Dhaka North City Corporation. Includes a citizen-facing mobile app, an administrator dashboard with live statistics, fleet/vehicle tracking, role-based authentication, and a community-interaction feed.\n\nThe system coordinates thousands of daily collection events and was designed to work reliably over intermittent connections.\n\nStack: React, Node.js/Express, MongoDB, React Native.",
+    "description": "An end-to-end waste-management platform built for Dhaka North City Corporation. Provides user authentication, an administrator monitoring dashboard, real-time stats, vehicle/fleet management, and a companion community-interaction mobile app.\n\nTech Stack: React, Node.js/Express, MongoDB, React Native.",
     "tags": ["Full-Stack", "React", "Node.js", "MongoDB", "Mobile"],
     "icon": "cpu",
     "link": "https://github.com/masud70/EcoSync",
     "role": "Lead developer",
-    "duration": "6 months",
-    "users": "City-scale deployment"
+    "stack": "React, Node.js, MongoDB, React Native"
   },
   {
     "title": "qCompiler",
-    "subtitle": "Embeddable code-compiler API library",
+    "subtitle": "Versatile Node.js API library for code compilation",
     "date": "2024",
-    "description": "A Node.js API library designed to make it easy to embed a code compiler into any web or desktop application. Supports multiple languages and both online and offline execution modes. Useful for coding-practice platforms, educational tools, and in-browser editors.\n\nThe API is intentionally minimal — a handful of methods cover the common compile/run/test workflow.",
-    "tags": ["Node.js", "Library", "Developer Tools"],
+    "description": "A flexible Node.js library designed to make it easy to embed a code compiler into any web or desktop application. Supports multiple languages and both online and offline execution modes. Useful for coding-practice platforms, educational tools, and in-browser editors.",
+    "tags": ["Node.js", "Developer Tools", "Library"],
     "icon": "terminal",
     "link": "https://github.com/masud70/qCompiler",
     "role": "Solo author"
   },
   {
-    "title": "RTCDSSBSL — Trainee Management with Neural Auth",
-    "subtitle": "Web system with AI-based authentication",
+    "title": "RTCDSSBSL",
+    "subtitle": "Trainee Management System with Neural Authentication",
     "date": "2023",
-    "description": "A trainee-management system for RTC Barishal. The authentication layer uses a neural-network-based identity verification model, integrated end-to-end with a conventional web stack for records, scheduling, and progress tracking.\n\nOne of my first projects combining ML model deployment with a production-grade web application.",
-    "tags": ["Neural Networks", "Authentication", "Web"],
+    "description": "A management system for Regional Training Center (RTC) Barishal where the authentication layer uses a neural-network model for identity verification, integrated end-to-end with a standard web stack. Combines AI model deployment with production web infrastructure.",
+    "tags": ["Authentication", "Web Development", "Full Stack"],
     "icon": "brain",
     "link": "https://github.com/masud70/RTCDSSBSL"
   },
   {
-    "title": "EMERIT — Mobile Quiz & Exam App",
-    "subtitle": "React Native app with real-time ML features",
+    "title": "EMERIT",
+    "subtitle": "Mobile app for online quiz exams",
     "date": "2023",
-    "description": "An online quiz / examination application built with React Native. Features real-time proctor-candidate communication, plus machine-learning-driven question and response analysis that flags anomalous patterns.",
+    "description": "A React Native application for online quizzes and examinations. Features real-time proctor-candidate communication and machine-learning-driven analysis of questions and responses.",
     "tags": ["React Native", "ML", "Real-time"],
     "icon": "smartphone",
     "link": "https://github.com/masud70/EMERIT"
