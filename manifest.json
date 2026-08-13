@@ -1,0 +1,37 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "name": "Home",
+      "files": [
+        "home/01-BIO.md",
+        "home/02-EDUCATION.md",
+        "home/03-PUBLICATIONS.md",
+        "home/04-PROJECTS.md",
+        "home/05-PARTICIPATIONS.md",
+        "home/06-SKILLS.md"
+      ]
+    },
+    {
+      "route": "/certifications",
+      "name": "Certifications",
+      "files": [
+        "home/certifications/CERTIFICATIONS.md"
+      ]
+    },
+    {
+      "route": "/participations",
+      "name": "Participations",
+      "files": [
+        "home/participations/PARTICIPATIONS.md"
+      ]
+    },
+    {
+      "route": "/projects",
+      "name": "Projects",
+      "files": [
+        "home/projects/PROJECTS.md"
+      ]
+    }
+  ]
+}
