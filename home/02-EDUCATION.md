@@ -32,7 +32,6 @@
     "description": "I completed my BSc in Computer Science and Engineering at the University of Chittagong. My academic focus included Competitive Programming, Software Engineering, Machine Learning, and Data Structures & Algorithms. My undergraduate thesis, titled 'PairSiamNet: Transformer-Enhanced Siamese Network with Pairwise Learning for Semantic Relatedness,' explored deep learning approaches with pairwise contrastive learning for sentence-level semantic similarity. Through this work, I gained hands-on experience in model design, training, and evaluation using modern deep learning frameworks. This foundation shaped my interest in AI-driven systems and research-oriented problem solving.",
     "tags": ["Software Engineering", "Machine Learning", "Deep Learning", "NLP"],
     "icon": "graduation-cap",
-    "CGPA": "3.84 / 4.00",
     "rank": "2nd of 82",
     "images": ["assets/bsc_cu.jpg"]
   },
@@ -42,7 +41,6 @@
     "date": "Jul 2016 — Jul 2018",
     "description": "Completed the science-group curriculum (Physics, Chemistry, Biology, Higher Mathematics) with a GPA of 5.00/5.00. Ranked 166th in Barishal Education Board and awarded a board merit scholarship.",
     "icon": "school",
-    "GPA": "5.00 / 5.00",
     "scholarship": "Board merit scholarship",
     "images": ["assets/aldc.jpg"],
     "link": "https://www.barisalboard.gov.bd/webroot/newscorner/admin-2875965256802.pdf"
