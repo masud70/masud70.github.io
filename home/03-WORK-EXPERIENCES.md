@@ -21,7 +21,7 @@
   {
     "title": "Lecturer",
     "subtitle": "Dept. of CSE @ East Delta University",
-    "date": "January 2025 - July 2025",
+    "date": "Jan 2025 - Jul 2025",
     "description": "Taught undergraduate courses in Computer Science and Engineering, developed course materials and assessments, guided students through academic projects, and contributed to departmental academic activities and student development.",
     "tags": ["Teaching"],
     "icon": "cap",
