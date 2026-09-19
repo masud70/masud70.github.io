@@ -1,216 +1,172 @@
-# Masud Mazumder — Personal Portfolio
+# Academic Portfolio — Md. Masud Mazumder
 
-A dark-themed, Markdown-driven personal portfolio. Drop `.md` files into `/home`, rebuild, and the site updates. No backend, no database — ready for GitHub Pages.
+Single-page academic portfolio with anchor navigation, a fixed left sidebar, four switchable colour palettes, and a separate photo gallery route. All content lives in JSON files; adding a section requires no code changes.
 
-**Stack:** Vite · React · React Router · TailwindCSS · Framer Motion.
-**Theme:** Deep navy with emerald-green neon accents and a glowing timeline.
+**Stack:** Vite · React · React Router · TailwindCSS · lucide-react
 
 ---
 
-## 1. Quick start
+## Quick start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Visit the URL Vite prints. The `predev` / `prebuild` hooks regenerate `public/manifest.json` automatically on every run.
+`predev` and `prebuild` regenerate `public/manifest.json` automatically, so new content files are picked up on every run.
 
 ---
 
-## 2. Content model
+## Content model
 
-All content lives under `/home`.
+Everything lives under `home/`.
 
 ```
-/home
-├── assets/                     static files (images, your CV PDF, etc.)
-│   ├── portrait.jpg
-│   └── MasudCV.pdf
-├── 01-BIO.md                   homepage hero (section: "bio")
-├── 02-EDUCATION.md             timeline
-├── 03-PUBLICATIONS.md          timeline
-├── 04-PROJECTS.md              timeline (homepage preview)
-├── 05-ACHIEVEMENTS.md          timeline
-├── 06-SKILLS.md                skill grid (section: "skills")
-├── projects/
-│   └── PROJECTS.md             dedicated /projects page
-└── achievements/
-    └── ACHIEVEMENTS.md         dedicated /achievements page
+home/
+├── 01-PROFILE.json        hero + sidebar identity
+├── 02-NEWS.json           dated activity feed
+├── 03-RESEARCH.json       statement, interests, thesis
+├── 04-PUBLICATIONS.json   academic citation format
+├── 05-EDUCATION.json
+├── 06-EXPERIENCE.json     work + academic service
+├── 07-PROJECTS.json
+├── 08-ACHIEVEMENTS.json
+├── 09-SKILLS.json         skills + certifications
+├── 10-CONTACT.json
+├── gallery/
+│   └── 01-ALBUMS.json     photo albums (separate /gallery route)
+└── assets/                images, CV PDF, anything referenced above
 ```
 
-### File format
+### File shape
 
-Every `.md` file has two sections:
+Every content file has the same two top-level keys:
 
-````markdown
-# FORMAT
+```json
 {
-  "section": "bio",       // optional hint — see "Special sections" below
-  "type": "array",
-  "items": { "title": "string", "subtitle": "string" }
+  "format": {
+    "section": "projects",
+    "label": "Projects",
+    "title": "Projects"
+  },
+  "data": [ ... ]
 }
+```
 
-# DATA
-[
-  { "title": "Something", "subtitle": "Done well" }
-]
-````
+| Key | Purpose |
+|---|---|
+| `format.section` | Which renderer to use. Must match a key in `src/sections/index.jsx`. |
+| `format.label` | Text shown in the sidebar nav. |
+| `format.title` | Heading shown above the section. |
+| `data` | The payload — an object or array, depending on the section. |
 
-Rules (from the spec):
+**Ordering** comes from the numeric filename prefix (`01-`, `02-`, …). Renumber files to reorder sections; unprefixed files sort last.
 
-- Both `# FORMAT` and `# DATA` sections required.
-- Each section's body is **strict JSON** (or a ` ```json … ``` ` fence around strict JSON).
-- **No field is required.** Missing fields are omitted from the UI, never shown as placeholders.
-- Invalid JSON → file is skipped silently. The site never crashes.
-- Unknown custom fields (e.g. `placement`, `GPA`, `role`) render automatically as labelled rows in the card.
+A file with invalid JSON or an unrecognised `format.section` is skipped with a console warning — the rest of the site still builds and renders.
 
-### File ordering
+### Formatted text
 
-Filenames prefixed with a number (e.g. `01-BIO.md`) are sorted by that prefix. This controls what appears first on a page. Unprefixed files sort alphabetically after prefixed ones.
+Any text field accepts inline HTML:
 
-### Special sections
+```json
+"text": "Paper accepted at <strong>MSR 2025</strong>. See the <a href='https://...'>preprint</a>."
+```
 
-The `FORMAT` schema may include an optional `"section"` hint to pick a specialized renderer. Recognized values:
+Allowed: `<a> <b> <strong> <i> <em> <u> <s> <code> <kbd> <mark> <br> <p> <span> <small> <sup> <sub> <ul> <ol> <li> <blockquote>`
 
-| Hint        | Rendering                                                           |
-|-------------|---------------------------------------------------------------------|
-| `"bio"`     | Hero layout: large name, role, tagline, portrait, CV button, socials |
-| `"skills"`  | Skill grid with category chips                                      |
-| _(missing)_ | Default: **timeline** of `InfoCard` components                       |
-
-Unknown hints fall back to the timeline. You'll never break the site by adding a hint the renderer doesn't know.
-
-### Recognized item fields (all optional)
-
-`title`, `subtitle`, `description`, `date`, `image`, `link`, `pdf`, `tags`. Everything else is rendered as a key/value row.
-
-For bio data (section: `"bio"`): `name`, `role`, `tagline`, `description`, `location`, `email`, `phone`, `image`, `resume`, `github`, `linkedin`, `scholar`, `twitter`.
+Everything else is unwrapped and every attribute outside a short allowlist is stripped, so scripts, event handlers, `javascript:` URLs, and iframes cannot get through. External links automatically gain `target="_blank"` and `rel="noopener noreferrer"`.
 
 ### Assets
 
-Anything inside `/home/assets/` is copied verbatim into the built site. Reference it from markdown using a path relative to `/home`, e.g. `"image": "assets/portrait.jpg"`. Absolute URLs (`https://…`) pass through unchanged.
+Reference anything in `home/assets/` with a path relative to `home/`:
+
+```json
+"photo": "assets/masud.jpg",
+"cv": "assets/MasudCV.pdf"
+```
+
+Paths are resolved against the deploy base at runtime, so they work at both `/` and `/repo-name/`.
 
 ---
 
-## 3. Adding a new page
+## Themes
 
-Create a subfolder of `/home` and drop `.md` files in it.
+Four palettes ship in `src/index.css`, each a block of CSS custom properties:
 
+| id | Name | Character |
+|---|---|---|
+| `parchment` | Parchment | Warm off-white, deep teal — **default** |
+| `slate` | Slate | Cool neutral, indigo |
+| `sage` | Sage | Cream, forest green |
+| `midnight` | Midnight | Dark navy, emerald |
+
+The visitor's choice persists in `localStorage`.
+
+**To change the default**, edit one line in `src/theme/ThemeProvider.jsx`:
+
+```js
+export const DEFAULT_PALETTE = 'parchment';
 ```
-/home/publications/
-   PAPERS.md
-```
 
-After the next build, the nav gets a **Publications** link and `/#/publications` renders those files. No code changes.
+Also update `data-theme` on the `<html>` tag in `index.html` to match, which avoids a flash of the wrong palette on first paint.
+
+**To add a palette:** add a `[data-theme='yourname']` block in `src/index.css` defining all ten `--c-*` variables, then add a matching entry to `PALETTES` in `ThemeProvider.jsx`.
 
 ---
 
-## 4. Layout features
+## Adding a new section
 
-- **Hero / bio** with animated gradient name, terminal-style role line with blinking cursor, portrait framed by emerald corner accents, and a glowing CV download button.
-- **Timeline sections** — one card per row, anchored to a vertical neon spine with pulsing emerald dots. Soft blurred glow behind the line.
-- **Ambient background** — slow-floating emerald glow blobs behind the entire site.
-- **On-scroll reveal** — cards fade and slide in as they enter the viewport.
-- **Hover states** — borders transition to emerald, cards lift slightly, cornerspot glow appears.
-- **Responsive** — two-column hero collapses, cards reflow, spine position adjusts.
+1. Create `home/11-TALKS.json` with `"format": { "section": "talks", "label": "Talks", "title": "Invited Talks" }`.
+2. Add a `Talks` component and register it in `SECTION_COMPONENTS` in `src/sections/index.jsx`.
+3. Rebuild. The sidebar nav and scroll-spy pick it up automatically.
+
+Steps 1 and 3 alone are enough if you reuse an existing renderer — e.g. giving a second file `"section": "projects"` renders it with the projects layout.
 
 ---
 
-## 5. GitHub Pages deployment
+## Deployment
 
-### Option A — `gh-pages` branch
+The included workflow at `.github/workflows/deploy.yml` builds and publishes on every push to `main`.
 
-```bash
-# If your repo is at username.github.io/repo-name:
-export BASE_PATH="/repo-name/"
-npm run deploy
-```
+**One-time setup:** repo → **Settings → Pages → Source → GitHub Actions**. If this is set to "Deploy from a branch", GitHub serves your raw source instead of the build, and the browser refuses `main.jsx` with a `text/jsx` MIME error — the classic white screen.
 
-Then in GitHub → Settings → Pages, select the `gh-pages` branch as the source.
-
-For `username.github.io` (user/org site) or a custom domain, leave `BASE_PATH` unset.
-
-### Option B — GitHub Actions
-
-Create `.github/workflows/deploy.yml`:
+**Base path:** the workflow sets `BASE_PATH: /`, correct for a root user site (`masud70.github.io`). For a project site, change it to:
 
 ```yaml
-name: Deploy to GitHub Pages
-on:
-  push:
-    branches: [main]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-      - run: npm run build
-        env:
-          BASE_PATH: /${{ github.event.repository.name }}/
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+BASE_PATH: /${{ github.event.repository.name }}/
 ```
 
-Then set Settings → Pages → Source to **GitHub Actions**.
-
-### Why hash routing?
-
-URLs use `/#/projects` rather than `/projects` so direct navigation and page refresh work on GitHub Pages without a 404-redirect hack. If you move to Netlify/Vercel later, you can switch to `BrowserRouter` in `src/App.jsx`.
+**Routing** uses `HashRouter` (`/#/gallery`), so deep links and refreshes work on Pages without a 404 redirect workaround.
 
 ---
 
-## 6. Deferred features (per spec §14)
+## Project structure
 
-Not built yet — tell me when you want any of them:
-
-- Search
-- Filtering / sorting by date
-- Tag grouping
-- Blog-style posts
+```
+src/
+├── App.jsx                    routes, scroll-spy, layout shell
+├── main.jsx
+├── index.css                  Tailwind + the four palettes
+├── components/
+│   ├── Sidebar.jsx            identity, nav, CV link, mobile drawer
+│   └── ThemeSwitcher.jsx
+├── lib/
+│   ├── richText.jsx           HTML sanitizer + RichText component
+│   └── useContent.js          manifest loader, asset path resolver
+├── pages/
+│   └── Gallery.jsx            albums + lightbox
+├── sections/
+│   └── index.jsx              all ten section renderers + registry
+└── theme/
+    └── ThemeProvider.jsx      palette definitions, context, persistence
+```
 
 ---
 
-## 7. File map
+## Content checklist
 
-```
-portfolio/
-├── home/                                 your content
-├── public/                               auto-populated at build time
-├── scripts/generate-manifest.js          scans /home, emits manifest
-├── src/
-│   ├── components/
-│   │   ├── BioHero.jsx                   hero layout for the bio section
-│   │   ├── InfoCard.jsx                  generic card for any item shape
-│   │   ├── Nav.jsx                       auto-generated nav
-│   │   ├── SkillsGrid.jsx                specialized skills renderer
-│   │   └── Timeline.jsx                  neon vertical spine + dots
-│   ├── lib/
-│   │   ├── parseMarkdown.js              strict FORMAT/DATA parser
-│   │   └── useContent.js                 runtime manifest + .md loader
-│   ├── pages/DynamicPage.jsx             dispatches sections to renderers
-│   ├── App.jsx                           routing + ambient background
-│   ├── main.jsx
-│   └── index.css
-├── index.html
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-└── vite.config.js
-```
+Placeholders worth replacing before you share the site:
+
+- `home/01-PROFILE.json` — `links.scholar` and `links.orcid` are empty; add them once you have profiles.
+- `home/06-EXPERIENCE.json` — the Teaching entry is marked `"placeholder": true` and renders with a dashed border. Replace it with real TA/grader roles as you take them on, and drop the flag.
+- `home/04-PUBLICATIONS.json` — add the DOI/arXiv link and a `links` entry (`[{ "label": "PDF", "url": "..." }]`) once the MSR paper is online.

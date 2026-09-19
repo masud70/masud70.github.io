@@ -1,0 +1,29 @@
+{
+  "format": { "section": "news", "label": "News", "title": "Recent News", "type": "array", "limit": 6 },
+  "data": [
+    {
+      "date": "2026-01", "display": "Jan 2026", "highlight": true,
+      "text": "Paper <strong>“Method-Level Bug Prediction: How Far Are We?”</strong> submitted to <strong>ICSE 2027</strong> (Research Track) — currently under review."
+    },
+    {
+      "date": "2025-12", "display": "Dec 2025", "highlight": true,
+      "text": "Paper <strong>“How Do Agentic AI Systems Deal With Software Energy Concerns?”</strong> accepted at <strong>MSR 2026</strong> (Challenge Track)."
+    },
+    {
+      "date": "2025-11", "display": "Nov 2025",
+      "text": "Placed <strong>2nd</strong> (team) at the <em>Safe Food For Canada</em> hackathon, hosted by the University of Manitoba and the University of Guelph."
+    },
+    {
+      "date": "2025-10", "display": "Oct 2025",
+      "text": "Ranked <strong>102nd in Canada</strong> at <strong>IEEE Xtreme 19.0</strong>."
+    },
+    {
+      "date": "2025-09", "display": "Sep 2025",
+      "text": "Began the <strong>M.Sc. in Computer Science</strong> at the University of Manitoba, joining the <strong>SQM Research Lab</strong> under Dr. Shaiful Chowdhury."
+    },
+    {
+      "date": "2025-01", "display": "Jan 2025",
+      "text": "Joined <strong>East Delta University</strong> as a <strong>Lecturer</strong> in the Department of Computer Science and Engineering."
+    }
+  ]
+}

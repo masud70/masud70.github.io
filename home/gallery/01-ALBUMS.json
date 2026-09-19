@@ -1,0 +1,50 @@
+{
+  "format": {
+    "section": "gallery",
+    "label": "Gallery",
+    "title": "Photo Gallery",
+    "type": "array",
+    "intro": "Moments from competitions, campus life, and the road to Winnipeg."
+  },
+  "data": [
+    {
+      "album": "Safe Food For Canada Hackathon",
+      "year": "2025",
+      "caption": "Two days at the University of Manitoba × University of Guelph hackathon — second place as a team.",
+      "images": [
+        "assets/sf4c (1).jpg",
+        "assets/sf4c (2).jpg",
+        "assets/sf4c (3).png",
+        "assets/sf4c (4).png",
+        "assets/sf4c (5).png",
+        "assets/sf4c (6).png"
+      ]
+    },
+    {
+      "album": "Code Samurai 2024",
+      "year": "2024",
+      "caption": "Finals of the inter-university hackathon organised by the University of Dhaka and BJIT Limited.",
+      "images": [
+        "assets/code_samurai (1).jpg",
+        "assets/code_samurai (2).jpg",
+        "assets/code_samurai (3).jpg"
+      ]
+    },
+    {
+      "album": "Engineering Day",
+      "year": "2023",
+      "caption": "Programming contest and project presentation at the Faculty of Engineering, University of Chittagong.",
+      "images": [
+        "assets/engg_day (1).jpg",
+        "assets/engg_day (2).jpg",
+        "assets/engg_day (3).jpg"
+      ]
+    },
+    {
+      "album": "IEEE Xtreme 19.0",
+      "year": "2025",
+      "caption": "Twenty-four hours of competitive programming.",
+      "images": ["assets/ieeextreme.png"]
+    }
+  ]
+}

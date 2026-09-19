@@ -1,0 +1,111 @@
+{
+  "format": {
+    "section": "projects",
+    "label": "Projects",
+    "title": "Projects",
+    "type": "array",
+    "intro": "Selected work across agentic systems, generative models, and full-stack platforms."
+  },
+  "data": [
+    {
+      "title": "Quality Per Joule",
+      "subtitle": "Energy cost of generative image models",
+      "year": "2026",
+      "stack": [
+        "Python",
+        "PyTorch",
+        "CodeCarbon",
+        "Generative Models"
+      ],
+      "role": "Course project — Deep Generative Modeling",
+      "description": "Measured image quality gain per joule across AE, VAE, GAN, WGAN, and DDPM. When quality and energy are weighed together, the autoencoder outperforms the more complex families.",
+      "url": "https://github.com/masud70",
+      "highlights": [
+        "Compared AE, VAE, GAN, WGAN, and DDPM under identical training and sampling budgets.",
+        "Energy measured with CodeCarbon at both training and inference time.",
+        "Reported a quality-per-joule ratio rather than quality alone.",
+        "The simplest model — the autoencoder — wins once energy enters the objective."
+      ]
+    },
+    {
+      "title": "Orion",
+      "subtitle": "Local-first agentic assistant",
+      "year": "2026",
+      "stack": [
+        "TypeScript",
+        "LangGraph",
+        "LangChain",
+        "ElectronJS",
+        "ReactJS",
+        "SQLite",
+        "Ollama"
+      ],
+      "role": "Solo project",
+      "description": "A secure local assistant that executes agentic workflows from text and voice commands. An Electron and React desktop app provides the interface, while locally or remotely hosted LLMs drive a custom agentic workflow.",
+      "url": "https://github.com/masud70",
+      "highlights": [
+        "Runs entirely on the user's machine — no prompt or file leaves the device unless a remote model is explicitly configured.",
+        "Agentic workflow built on LangGraph, with tool calling routed through MCP.",
+        "Accepts both typed and spoken commands.",
+        "SQLite keeps conversation and task history local and inspectable."
+      ]
+    },
+    {
+      "title": "EcoSync",
+      "subtitle": "Waste management platform for Dhaka North City Corporation",
+      "year": "2024",
+      "stack": [
+        "ReactJS",
+        "Node.js",
+        "PostgreSQL",
+        "React Native"
+      ],
+      "description": "Full-stack municipal platform with real-time vehicle tracking, an admin dashboard, user authentication, and a companion mobile app for community interaction.",
+      "url": "https://github.com/masud70/EcoSync",
+      "highlights": [
+        "Real-time vehicle tracking across the collection fleet.",
+        "Admin dashboard with live operational statistics.",
+        "Role-based authentication for citizens, staff, and administrators.",
+        "Companion React Native app for community reporting.",
+        "Designed to degrade gracefully on intermittent connections."
+      ]
+    },
+    {
+      "title": "qCompiler",
+      "subtitle": "Embeddable code-compilation API",
+      "year": "2024",
+      "stack": [
+        "Node.js"
+      ],
+      "description": "Open-source Node.js library for building online and offline code compiler applications, supporting multiple languages behind a unified interface.",
+      "url": "https://github.com/masud70/qCompiler",
+      "highlights": [
+        "One interface across several language runtimes.",
+        "Works in both online and offline execution modes.",
+        "Published as an open-source library for other developers to embed."
+      ]
+    },
+    {
+      "title": "CUOPAS",
+      "subtitle": "Student management system",
+      "year": "2023",
+      "stack": [
+        "ReactJS",
+        "Node.js",
+        "Express",
+        "MySQL"
+      ],
+      "role": "3rd Place — Engineering Day, University of Chittagong",
+      "description": "Platform covering enrollment, attendance tracking, examination management, and automated result processing.",
+      "url": "https://github.com/masud70",
+      "highlights": [
+        "Covers enrollment, attendance, examinations, and automated result processing.",
+        "Awarded 3rd place at Engineering Day, University of Chittagong."
+      ],
+      "images": [
+        "assets/engg_day (3).jpg",
+        "assets/engg_day (1).jpg"
+      ]
+    }
+  ]
+}

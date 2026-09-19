@@ -2,128 +2,113 @@
 /**
  * generate-manifest.js
  *
- * Scans /home, copies .md files and /home/assets into public/home,
- * and writes public/manifest.json describing pages and ordering.
+ * Scans /home, copies content + assets into /public/home, and writes
+ * /public/manifest.json.
  *
- * Ordering rules for files inside a page:
- *   1. If a file has a numeric prefix (e.g. "01-BIO.md", "02-EDUCATION.md"),
- *      it is sorted by that prefix.
- *   2. Otherwise, sorted alphabetically.
+ * Content model
+ * -------------
+ *   home/NN-NAME.json   → one section of the single-page site, ordered by NN
+ *   home/gallery/*.json → gallery albums (rendered on the separate /gallery route)
+ *   home/assets/*       → images, PDFs, anything referenced from content
  *
- * The numeric-prefix convention lets you control which sections appear first
- * on each page (per spec §16: no hardcoded content).
+ * Adding a new section = adding a new numbered JSON file. No code changes.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const SRC_HOME = path.join(ROOT, 'home');
-const PUBLIC_DIR = path.join(ROOT, 'public');
-const DEST_HOME = path.join(PUBLIC_DIR, 'home');
-const MANIFEST_PATH = path.join(PUBLIC_DIR, 'manifest.json');
+const SRC = path.join(ROOT, 'home');
+const PUBLIC = path.join(ROOT, 'public');
+const DEST = path.join(PUBLIC, 'home');
+const MANIFEST = path.join(PUBLIC, 'manifest.json');
 
-const ASSET_EXTENSIONS = new Set([
-  '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg',
-  '.pdf', '.mp4', '.webm', '.mp3',
+const COPY_EXT = new Set([
+  '.json', '.md',
+  '.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif',
+  '.pdf', '.mp4', '.webm',
 ]);
 
-function rmrf(target) {
-  if (fs.existsSync(target)) fs.rmSync(target, { recursive: true, force: true });
+function rmrf(t) {
+  if (fs.existsSync(t)) fs.rmSync(t, { recursive: true, force: true });
 }
 
 function copyTree(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    const s = path.join(src, entry.name);
-    const d = path.join(dest, entry.name);
-    if (entry.isDirectory()) {
-      copyTree(s, d);
-    } else if (entry.isFile()) {
-      const lower = entry.name.toLowerCase();
-      const ext = path.extname(lower);
-      if (lower.endsWith('.md') || ASSET_EXTENSIONS.has(ext)) {
-        fs.copyFileSync(s, d);
-      }
+  for (const e of fs.readdirSync(src, { withFileTypes: true })) {
+    const s = path.join(src, e.name);
+    const d = path.join(dest, e.name);
+    if (e.isDirectory()) copyTree(s, d);
+    else if (e.isFile() && COPY_EXT.has(path.extname(e.name).toLowerCase())) {
+      fs.copyFileSync(s, d);
     }
   }
 }
 
-function orderKey(filename) {
-  const m = filename.match(/^(\d+)[-_]/);
+/** Numeric prefix controls section order; unprefixed files sort last. */
+function orderOf(name) {
+  const m = name.match(/^(\d+)[-_]/);
   return m ? parseInt(m[1], 10) : 9999;
 }
 
-function sortFiles(filenames) {
-  return [...filenames].sort((a, b) => {
-    const ka = orderKey(path.basename(a));
-    const kb = orderKey(path.basename(b));
-    if (ka !== kb) return ka - kb;
-    return a.localeCompare(b);
-  });
-}
-
-function prettifyName(slug) {
-  return slug
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function buildManifest() {
-  if (!fs.existsSync(SRC_HOME)) return { pages: [] };
-
-  const pages = [];
-
-  // Homepage files (directly under /home, excluding assets folder)
-  const rootFiles = fs
-    .readdirSync(SRC_HOME, { withFileTypes: true })
-    .filter((e) => e.isFile() && e.name.toLowerCase().endsWith('.md'))
-    .map((e) => `home/${e.name}`);
-
-  pages.push({ route: '/', name: 'Home', files: sortFiles(rootFiles) });
-
-  // Subfolders (skip 'assets' - reserved for static files)
-  const subdirs = fs
-    .readdirSync(SRC_HOME, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && e.name.toLowerCase() !== 'assets')
-    .map((e) => e.name)
-    .sort();
-
-  for (const dir of subdirs) {
-    const dirPath = path.join(SRC_HOME, dir);
-    const files = [];
-    (function walk(cur, rel) {
-      for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
-        const abs = path.join(cur, entry.name);
-        const nextRel = `${rel}/${entry.name}`;
-        if (entry.isDirectory()) {
-          walk(abs, nextRel);
-        } else if (entry.isFile() && entry.name.toLowerCase().endsWith('.md')) {
-          files.push(`home/${nextRel}`);
-        }
-      }
-    })(dirPath, dir);
-
-    pages.push({
-      route: `/${dir}`,
-      name: prettifyName(dir),
-      files: sortFiles(files),
-    });
+function readSectionMeta(absPath) {
+  try {
+    const obj = JSON.parse(fs.readFileSync(absPath, 'utf8'));
+    const fmt = obj.format || {};
+    return {
+      section: fmt.section || null,
+      label: fmt.label || null,
+      title: fmt.title || null,
+    };
+  } catch {
+    return null; // invalid JSON — skipped, site still builds
   }
-
-  return { pages };
 }
 
-// Main
-rmrf(DEST_HOME);
-if (fs.existsSync(SRC_HOME)) copyTree(SRC_HOME, DEST_HOME);
-fs.mkdirSync(PUBLIC_DIR, { recursive: true });
-const manifest = buildManifest();
-fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
-fs.writeFileSync(path.join(PUBLIC_DIR, '.nojekyll'), '');
+function build() {
+  if (!fs.existsSync(SRC)) return { sections: [], gallery: [] };
 
-const total = manifest.pages.reduce((n, p) => n + p.files.length, 0);
-console.log(`[manifest] ${manifest.pages.length} page(s), ${total} markdown file(s) indexed.`);
+  const sections = fs
+    .readdirSync(SRC, { withFileTypes: true })
+    .filter((e) => e.isFile() && e.name.toLowerCase().endsWith('.json'))
+    .sort((a, b) => orderOf(a.name) - orderOf(b.name) || a.name.localeCompare(b.name))
+    .map((e) => {
+      const meta = readSectionMeta(path.join(SRC, e.name));
+      if (!meta || !meta.section) {
+        console.warn(`[manifest] skipping ${e.name} (no format.section or invalid JSON)`);
+        return null;
+      }
+      return {
+        file: `home/${e.name}`,
+        id: meta.section,
+        label: meta.label,
+        title: meta.title,
+      };
+    })
+    .filter(Boolean);
+
+  const galleryDir = path.join(SRC, 'gallery');
+  const gallery = fs.existsSync(galleryDir)
+    ? fs
+        .readdirSync(galleryDir, { withFileTypes: true })
+        .filter((e) => e.isFile() && e.name.toLowerCase().endsWith('.json'))
+        .sort((a, b) => orderOf(a.name) - orderOf(b.name) || a.name.localeCompare(b.name))
+        .map((e) => `home/gallery/${e.name}`)
+    : [];
+
+  return { sections, gallery };
+}
+
+rmrf(DEST);
+if (fs.existsSync(SRC)) copyTree(SRC, DEST);
+fs.mkdirSync(PUBLIC, { recursive: true });
+
+const manifest = build();
+fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2));
+fs.writeFileSync(path.join(PUBLIC, '.nojekyll'), '');
+
+console.log(
+  `[manifest] ${manifest.sections.length} section(s), ${manifest.gallery.length} gallery file(s).`
+);

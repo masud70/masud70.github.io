@@ -1,0 +1,27 @@
+{
+  "format": {
+    "section": "experience",
+    "label": "Experience",
+    "title": "Professional Experience",
+    "type": "object"
+  },
+  "data": {
+    "groups": [
+      {
+        "heading": "Teaching",
+        "items": [
+          {
+            "role": "Lecturer",
+            "org": "East Delta University",
+            "orgDetail": "Dept. of Computer Science and Engineering · Chittagong, Bangladesh",
+            "period": "Jan 2025 — Jul 2025",
+            "points": [
+              "Taught undergraduate computer science courses.",
+              "Designed coursework, assessments, and grading criteria."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

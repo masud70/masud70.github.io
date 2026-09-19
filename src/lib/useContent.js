@@ -1,80 +1,95 @@
 import { useEffect, useState } from 'react';
-import { parseMarkdown, titleFromPath } from './parseMarkdown.js';
 
-function withBase(p) {
+/** Resolve a public-relative path against Vite's configured base. */
+export function withBase(p) {
   const base = import.meta.env.BASE_URL || '/';
-  const cleanBase = base.endsWith('/') ? base : base + '/';
-  return cleanBase + p.replace(/^\/+/, '');
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+  return cleanBase + String(p).replace(/^\/+/, '');
 }
 
-async function fetchText(url) {
+/**
+ * Resolve an asset path written in content (e.g. "assets/masud.jpg") to a URL
+ * that works at any deploy base. Absolute URLs and data URIs pass through.
+ */
+export function asset(p) {
+  if (!p || typeof p !== 'string') return p;
+  if (/^https?:\/\//i.test(p) || p.startsWith('data:')) return p;
+  return withBase(`home/${p.replace(/^\/+/, '').replace(/^home\//, '')}`);
+}
+
+async function fetchJson(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
-  return res.text();
+  if (!res.ok) throw new Error(`${res.status} fetching ${url}`);
+  return res.json();
 }
 
+/**
+ * Loads manifest.json, then every section file it references.
+ *
+ * Returns:
+ *   sections – ordered array of { id, label, title, format, data }
+ *   gallery  – ordered array of the same shape, for the /gallery route
+ *
+ * A file that fails to load or parse is skipped; the rest of the site renders.
+ */
 export function useContent() {
-  const [state, setState] = useState({ loading: true, error: null, pages: [] });
+  const [state, setState] = useState({
+    loading: true,
+    error: null,
+    sections: [],
+    gallery: [],
+  });
 
   useEffect(() => {
     let cancelled = false;
 
     (async () => {
       try {
-        const manifest = JSON.parse(await fetchText(withBase('manifest.json')));
-        const rawPages = Array.isArray(manifest.pages) ? manifest.pages : [];
+        const manifest = await fetchJson(withBase('manifest.json'));
 
-        const pages = await Promise.all(
-          rawPages.map(async (page) => {
-            const files = Array.isArray(page.files) ? page.files : [];
-            const sections = await Promise.all(
-              files.map(async (filePath) => {
-                try {
-                  const raw = await fetchText(withBase(filePath));
-                  const parsed = parseMarkdown(raw);
-                  if (!parsed) return null;
-                  return {
-                    file: filePath,
-                    title: titleFromPath(filePath),
-                    schema: parsed.schema,
-                    data: parsed.data,
-                  };
-                } catch {
-                  return null;
-                }
-              })
-            );
+        const loadOne = async (entry) => {
+          const file = typeof entry === 'string' ? entry : entry.file;
+          try {
+            const obj = await fetchJson(withBase(file));
+            const format = obj.format || {};
+            const data = obj.data;
+            if (data === null || data === undefined) return null;
+            if (Array.isArray(data) && data.length === 0) return null;
             return {
-              route: page.route,
-              name: page.name,
-              sections: sections.filter(Boolean),
+              file,
+              id: format.section || (typeof entry === 'object' ? entry.id : null),
+              label: format.label || null,
+              title: format.title || null,
+              format,
+              data,
             };
-          })
-        );
+          } catch {
+            return null;
+          }
+        };
 
-        if (!cancelled) setState({ loading: false, error: null, pages });
+        const [sections, gallery] = await Promise.all([
+          Promise.all((manifest.sections || []).map(loadOne)),
+          Promise.all((manifest.gallery || []).map(loadOne)),
+        ]);
+
+        if (!cancelled) {
+          setState({
+            loading: false,
+            error: null,
+            sections: sections.filter(Boolean),
+            gallery: gallery.filter(Boolean),
+          });
+        }
       } catch (err) {
-        if (!cancelled) setState({ loading: false, error: err, pages: [] });
+        if (!cancelled) {
+          setState({ loading: false, error: err, sections: [], gallery: [] });
+        }
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []);
 
   return state;
-}
-
-/** Resolve a relative asset path (e.g. "assets/portrait.jpg") to a URL
- *  that works under the current BASE_URL, so authors can reference
- *  /home/assets/* from inside their Markdown without thinking about
- *  deployment paths. Absolute URLs pass through unchanged. */
-export function resolveAsset(pathLike) {
-  if (!pathLike || typeof pathLike !== 'string') return pathLike;
-  if (/^https?:\/\//i.test(pathLike) || pathLike.startsWith('data:')) return pathLike;
-  const base = import.meta.env.BASE_URL || '/';
-  const cleanBase = base.endsWith('/') ? base : base + '/';
-  const clean = pathLike.replace(/^\/+/, '').replace(/^home\//, '');
-  return cleanBase + 'home/' + clean;
 }

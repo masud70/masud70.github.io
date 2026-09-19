@@ -1,0 +1,37 @@
+{
+    "format": {
+        "section": "research",
+        "label": "Research",
+        "title": "Research Interests",
+        "type": "object"
+    },
+    "data": {
+        "statement": "<p>My research interests center on <strong>software engineering</strong> — software quality, vulnerability detection, and the empirical study of how real systems are built and maintained. My M.Sc. thesis works directly in this space, studying <strong>software vulnerability</strong>: what makes a method risky, and whether a model can tell us before it breaks.</p><p>I am equally drawn to <strong>natural language processing</strong>, <strong>deep learning</strong>, and <strong>generative models</strong>. My B.Sc. thesis came from that side: <em>PairSiamNet</em>, a transformer-enhanced Siamese network that learns an embedding space where distance reflects semantic relatedness.</p><p>Across both, what draws me is application — work that ends in something useful, not just a better number.</p>",
+        "interests": [
+            {
+                "title": "Software Quality & Maintenance",
+                "text": "What makes software reliable, readable, and maintainable over its lifetime."
+            },
+            {
+                "title": "Software Vulnerability & Security",
+                "text": "Finding weaknesses in code before they become failures in production."
+            },
+            {
+                "title": "Empirical Software Engineering",
+                "text": "Studying how software is actually built, using evidence drawn from real projects."
+            },
+            {
+                "title": "AI for Software Engineering",
+                "text": "What changes in software when machines take on more of the writing and reviewing."
+            },
+            {
+                "title": "Natural Language Processing",
+                "text": "Teaching machines to represent meaning in language, and in code."
+            },
+            {
+                "title": "Deep Learning & Generative Models",
+                "text": "How modern architectures learn, generate, and where their limits lie."
+            }
+        ]
+    }
+}

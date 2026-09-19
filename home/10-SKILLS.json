@@ -1,0 +1,24 @@
+{
+  "format": { "section": "skills", "label": "Skills", "title": "Skills & Certifications", "type": "object" },
+  "data": {
+    "groups": [
+      { "category": "AI / ML", "items": ["PyTorch", "TensorFlow", "LangGraph", "LangChain", "MCP & Tools"] },
+      { "category": "Languages", "items": ["C", "C++", "Python", "Java", "JavaScript", "PHP"] },
+      { "category": "Web & Mobile", "items": ["ReactJS", "Next.js", "Express.js", "Flutter", "React Native", "HTML", "CSS"] },
+      { "category": "Databases", "items": ["MySQL", "PostgreSQL", "MongoDB"] },
+      { "category": "Tools", "items": ["Git & GitHub", "LaTeX"] }
+    ],
+    "certifications": [
+      {
+        "title": "Reinforcement Learning Specialization",
+        "issuer": "University of Alberta via Coursera — Prof. Adam White & Prof. Martha White",
+        "date": "In Progress"
+      },
+      {
+        "title": "Fundamental Information Technology Engineer Examination",
+        "issuer": "Bangladesh IT-Engineers Examination Center, Bangladesh Computer Council — ranked 7th nationwide",
+        "date": "April 2023"
+      }
+    ]
+  }
+}

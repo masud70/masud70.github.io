@@ -1,0 +1,28 @@
+{
+    "format": {
+        "section": "profile",
+        "label": "Home",
+        "type": "object"
+    },
+    "data": {
+        "name": "Md. Masud Mazumder",
+        "firstName": "Md. Masud",
+        "lastName": "Mazumder",
+        "status": "MSc. Student, Computer Science",
+        "affiliation": "University of Manitoba",
+        "affiliationUrl": "https://umanitoba.ca/",
+        "location": "Winnipeg, Manitoba, Canada",
+        "email": "mazumdmm@myumanitoba.ca",
+        "phone": "+1 431-458-8900",
+        "photo": "assets/masud.jpg",
+        "cv": "assets/MasudCV.pdf",
+        "links": {
+            "github": "masud70",
+            "linkedin": "masud159292",
+            "scholar": "",
+            "orcid": ""
+        },
+        "intro": "<p>I am an MSc. student in Computer Science, supervised by <strong>Dr. Shaiful Chowdhury</strong> in the <a href=\"https://shaifulc.github.io/SQMResearchLab/SQMResearchLab.html\"><strong>SQM Research Lab</strong></a>.</p><p>My work sits at the meeting point of <strong>software quality</strong> and <strong>machine learning</strong> — using models to understand and improve the code we ship, and asking what changes when part of the author is a machine. My thesis focuses on software vulnerability.</p><p>I am looking for PhD opportunities in software engineering and applied machine learning.</p>",
+        "seeking": "Aspiring PhD student"
+    }
+}

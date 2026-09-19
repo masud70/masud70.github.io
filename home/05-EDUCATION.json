@@ -1,0 +1,47 @@
+{
+  "format": {
+    "section": "education",
+    "label": "Education",
+    "title": "Education",
+    "type": "array"
+  },
+  "data": [
+    {
+      "degree": "M.Sc. in Computer Science",
+      "institution": "University of Manitoba",
+      "institutionUrl": "https://umanitoba.ca/",
+      "location": "Winnipeg, Canada",
+      "period": "Sep 2025 — Present",
+      "logo": "assets/uofm.jpg",
+      "grade": "GPA 4.38 / 4.50 (coursework completed)",
+      "points": [
+        "Supervisor: <strong>Dr. Shaiful Chowdhury</strong> — SQM Research Lab.",
+        "Graduate courseworks: Deep Generative Modeling — Theory and Application (A+), Software Quality (A+), Human-AI Interaction (A+), Research Methodology (A)."
+      ]
+    },
+    {
+      "degree": "B.Sc. in Computer Science & Engineering",
+      "institution": "University of Chittagong",
+      "location": "Chittagong, Bangladesh",
+      "period": "Jan 2019 — Oct 2024",
+      "logo": "assets/bsc_cu.jpg",
+      "grade": "CGPA 3.84 / 4.00",
+      "points": [
+        "Ranked <strong>2nd out of 82</strong> students.",
+        "Thesis: <em>PairSiamNet — Transformer-Enhanced Siamese Network with Pairwise Learning for Semantic Relatedness</em>, evaluating semantic relatedness between sentence pairs via pairwise contrastive learning."
+      ]
+    },
+    {
+      "degree": "Higher Secondary Certificate (Science)",
+      "institution": "Amrita Lal Dey College",
+      "location": "Barishal, Bangladesh",
+      "period": "Jul 2016 — Jul 2018",
+      "logo": "assets/aldc.jpg",
+      "grade": "GPA 5.00 / 5.00",
+      "points": [
+        "Ranked <strong>166th</strong> in the Barishal Education Board.",
+        "Awarded a board merit scholarship."
+      ]
+    }
+  ]
+}

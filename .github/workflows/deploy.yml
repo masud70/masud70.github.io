@@ -26,6 +26,8 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
+          # Root user site (masud70.github.io) -> "/".
+          # Project site (masud70.github.io/repo) -> "/${{ github.event.repository.name }}/"
           BASE_PATH: /
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

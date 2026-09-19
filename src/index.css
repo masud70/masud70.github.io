@@ -2,20 +2,167 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────────────────────────────────────────
+   PALETTES
+   Each block sets space-separated RGB triplets consumed by
+   tailwind.config.js. Switching themes = changing data-theme on <html>.
+   ─────────────────────────────────────────────────────────────── */
+
+/* 1. Parchment — warm off-white, deep teal accent. Calm and academic. */
+:root,
+[data-theme="parchment"] {
+    --c-canvas: 253 252 249;
+    --c-surface: 255 255 255;
+    --c-surface-alt: 247 245 240;
+    --c-line: 226 221 212;
+    --c-ink: 26 26 24;
+    --c-ink-soft: 68 66 62;
+    --c-ink-mute: 129 125 118;
+    --c-accent: 15 118 110;
+    --c-accent-soft: 204 238 234;
+    --c-accent-ink: 255 255 255;
+    color-scheme: light;
+}
+
+/* 2. Slate — cool neutral, indigo accent. Crisp and modern. */
+[data-theme="slate"] {
+    --c-canvas: 248 250 252;
+    --c-surface: 255 255 255;
+    --c-surface-alt: 241 245 249;
+    --c-line: 219 226 235;
+    --c-ink: 15 23 42;
+    --c-ink-soft: 51 65 85;
+    --c-ink-mute: 113 128 150;
+    --c-accent: 79 70 229;
+    --c-accent-soft: 224 222 255;
+    --c-accent-ink: 255 255 255;
+    color-scheme: light;
+}
+
+/* 3. Sage — cream base, forest green accent. Warm and grounded. */
+[data-theme="sage"] {
+    --c-canvas: 250 249 245;
+    --c-surface: 255 255 255;
+    --c-surface-alt: 243 242 234;
+    --c-line: 223 222 209;
+    --c-ink: 20 35 30;
+    --c-ink-soft: 62 76 68;
+    --c-ink-mute: 124 134 125;
+    --c-accent: 61 116 74;
+    --c-accent-soft: 214 236 218;
+    --c-accent-ink: 255 255 255;
+    color-scheme: light;
+}
+
+/* 4. Midnight — dark navy, emerald accent. The dark option. */
+[data-theme="midnight"] {
+    --c-canvas: 10 16 32;
+    --c-surface: 20 29 52;
+    --c-surface-alt: 27 38 66;
+    --c-line: 42 54 87;
+    --c-ink: 244 247 251;
+    --c-ink-soft: 216 223 236;
+    --c-ink-mute: 148 163 184;
+    --c-accent: 16 185 129;
+    --c-accent-soft: 6 60 45;
+    --c-accent-ink: 10 16 32;
+    color-scheme: dark;
+}
+
 @layer base {
-  html { scroll-behavior: smooth; }
+    html {
+        scroll-behavior: smooth;
+        /* Offset anchor targets so headings clear the mobile top bar */
+        scroll-padding-top: 1.5rem;
+    }
 
-  body {
-    @apply bg-ink-900 text-fog-200 font-sans antialiased;
-  }
+    body {
+        @apply bg-canvas text-inkSoft font-sans antialiased;
+        font-size: 17px;
+        line-height: 1.65;
+    }
 
-  ::selection {
-    @apply bg-em-500/30 text-fog-100;
-  }
+    @media (max-width: 640px) {
+        body {
+            font-size: 16px;
+        }
+    }
 
-  /* Custom scrollbar on dark bg */
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: #0A1020; }
-  ::-webkit-scrollbar-thumb { background: #2A3657; border-radius: 10px; border: 2px solid #0A1020; }
-  ::-webkit-scrollbar-thumb:hover { background: #10B981; }
+    ::selection {
+        @apply bg-accent/20 text-ink;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply text-ink;
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    /* Footer sits on its own tint so the page has a clear end. */
+    .site-footer {
+        background: rgb(var(--c-surface-alt));
+        border-top: 2px solid rgb(var(--c-line));
+    }
+
+    /* Rich text rendered from sanitized HTML in content files */
+    .rich a {
+        @apply text-accent underline underline-offset-2 decoration-accent/40 hover:decoration-accent transition;
+    }
+    .rich strong,
+    .rich b {
+        @apply font-semibold text-ink;
+    }
+    .rich em,
+    .rich i {
+        @apply italic;
+    }
+    .rich code {
+        @apply font-mono text-[0.9em] bg-surfaceAlt border border-line rounded px-1 py-0.5;
+    }
+    .rich ul {
+        @apply list-disc pl-5 space-y-1 my-3;
+    }
+    .rich ol {
+        @apply list-decimal pl-5 space-y-1 my-3;
+    }
+    .rich p + p {
+        @apply mt-3;
+    }
+
+    /* Justified body copy, with hyphenation so the rag stays tidy. */
+    .prose-justify,
+    .prose-justify p,
+    .prose-justify li {
+        text-align: justify;
+        hyphens: auto;
+    }
+    /* Justification needs a wide measure to look right. Below the desktop
+     breakpoint the column is narrow enough that justifying opens up rivers
+     of white space, so fall back to a ragged right edge. */
+    @media (max-width: 1023px) {
+        .prose-justify,
+        .prose-justify p,
+        .prose-justify li {
+            text-align: left;
+        }
+    }
+    .rich blockquote {
+        @apply border-l-2 border-accent pl-4 italic text-inkMute my-4;
+    }
 }

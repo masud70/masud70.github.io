@@ -1,0 +1,64 @@
+{
+  "format": {
+    "section": "service",
+    "label": "Academic Service",
+    "title": "Academic Service",
+    "type": "object"
+  },
+  "data": {
+    "groups": [
+      {
+        "items": [
+          {
+            "role": "Teaching Assistant",
+            "org": "COMP 1002 — Introduction to Tools and Techniques in Computer Science",
+            "orgDetail": "Dept. of Computer Science, University of Manitoba",
+            "period": "Sep 2026 — Dec 2026",
+            "points": [
+              "Assist students during class sessions, working through exercises and clarifying material as questions arise."
+            ]
+          },
+          {
+            "role": "Teaching Assistant",
+            "org": "COMP 1012 — Computer Programming for Scientists & Engineers",
+            "orgDetail": "Dept. of Computer Science, International College of Manitoba",
+            "period": "Sep 2026 — Dec 2026",
+            "points": [
+              "Conduct weekly lab sessions, walking students through programming exercises and debugging their solutions.",
+              "Help students build problem-solving habits in Python, from reading a specification to testing their own code."
+            ]
+          },
+          {
+            "role": "Grader",
+            "org": "COMP 1012 — Computer Programming for Scientists & Engineers",
+            "orgDetail": "Dept. of Computer Science, University of Manitoba",
+            "period": "Sep 2026 — Dec 2026",
+            "points": [
+              "Grade assignments and exams against course rubrics, with written feedback on each submission."
+            ]
+          },
+          {
+            "role": "Problem Setter",
+            "org": "Intra-Department Database Programming Contest",
+            "orgDetail": "Dept. of Computer Science & Engineering, University of Chittagong",
+            "period": "Aug 2023",
+            "points": [
+              "Authored the problem set, schemas, test data, and grading criteria."
+            ]
+          },
+          {
+            "role": "Problem Setter",
+            "org": "Programming Contest 7",
+            "orgDetail": "CSE-ian of BD community, hosted on Toph",
+            "period": "Aug 2019",
+            "url": "https://toph.co/c/cse-ian-bd-7",
+            "points": [
+              "Set algorithmic problems, wrote reference solutions, and validated test cases.",
+              "Contest archive: <a href=\"https://toph.co/c/cse-ian-bd-7\">toph.co/c/cse-ian-bd-7</a>."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

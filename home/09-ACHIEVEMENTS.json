@@ -1,0 +1,59 @@
+{
+  "format": { "section": "achievements", "label": "Achievements", "title": "Competitions & Achievements", "type": "array" },
+  "data": [
+    {
+      "title": "Safe Food For Canada Hackathon",
+      "org": "University of Manitoba & University of Guelph",
+      "year": "2025",
+      "award": "2nd Place (team)",
+      "text": "Placed second among participating universities.",
+      "images": ["assets/sf4c (1).jpg", "assets/sf4c (2).jpg", "assets/sf4c (3).png"]
+    },
+    {
+      "title": "IEEE Xtreme Programming Competition 19.0",
+      "org": "IEEE",
+      "year": "2025",
+      "award": "Ranked 102nd in Canada (team)",
+      "text": "Competed in IEEE's global 24-hour programming contest.",
+      "images": ["assets/ieeextreme.png"]
+    },
+    {
+      "title": "Inter-University Hackathon — Code Samurai 2024",
+      "org": "University of Dhaka & BJIT Limited",
+      "year": "2024",
+      "award": "Finalist",
+      "text": "Finalist among 450+ teams from universities across Bangladesh.",
+      "images": ["assets/code_samurai (1).jpg", "assets/code_samurai (2).jpg"]
+    },
+    {
+      "title": "Engineering Day Programming Contest",
+      "org": "University of Chittagong",
+      "year": "2023",
+      "award": "2nd Place",
+      "text": "Contest focused on algorithmic soundness and mathematical analysis.",
+      "images": ["assets/engg_day (1).jpg"]
+    },
+    {
+      "title": "Engineering Day Project Presentation",
+      "org": "University of Chittagong",
+      "year": "2023",
+      "award": "3rd Place (team)",
+      "text": "Presented CUOPAS, a student management system covering enrollment, attendance, examination, and result processing.",
+      "images": ["assets/engg_day (3).jpg"]
+    },
+    {
+      "title": "Inter-University Programming Contest (Divisional)",
+      "org": "CUET, Chittagong",
+      "year": "2022",
+      "award": "5th Place (team)",
+      "text": "Placed fifth among divisional inter-university participants."
+    },
+    {
+      "title": "Departmental Merit Position",
+      "org": "University of Chittagong",
+      "year": "2024",
+      "award": "2nd of 82",
+      "text": "Graduated second in the cohort with a CGPA of 3.84/4.00."
+    }
+  ]
+}

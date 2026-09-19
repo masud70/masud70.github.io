@@ -1,0 +1,18 @@
+{
+    "format": {
+        "section": "contact",
+        "label": "Contact",
+        "title": "Contact",
+        "type": "object"
+    },
+    "data": {
+        "blurb": "I am always glad to hear from researchers, prospective collaborators, and anyone curious about the work. Email is the fastest way to reach me.",
+        "email": "mazumdmm@myumanitoba.ca",
+        "phone": "+1 431-458-8900",
+        "address": "Winnipeg, Manitoba, Canada",
+        "timezone": "Central Daylight Time (CDT)",
+        "mapQuery": "Winnipeg, Manitoba, Canada",
+        "availability": "Actively seeking PhD positions. Also open to research collaborations and roles in industry research or software engineering.",
+        "personalEmail": "mdmasud.csecu@gmail.com"
+    }
+}
