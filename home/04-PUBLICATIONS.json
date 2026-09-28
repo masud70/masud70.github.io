@@ -8,8 +8,6 @@
       "group": "Under Review",
       "title": "Method-Level Bug Prediction: How Far Are We?",
       "authors": "Md Nahidul Islam Opu, <strong>Md. Masud Mazumder</strong>, Muhammad Asaduzzaman, Shaiful Chowdhury",
-      "venue": "International Conference on Software Engineering (ICSE), Research Track",
-      "year": "2027",
       "status": "Under Review",
       "summary": "A realistic method-level bug prediction pipeline combining LLM-based label cleaning, code embeddings, and time-sensitive cross-project evaluation — revealing persistent generalization challenges.",
       "links": []
@@ -23,7 +21,7 @@
       "status": "Accepted",
       "note": "Equal contribution with the first author",
       "summary": "Thematic analysis of 216 energy-explicit pull requests in LLM-based coding agents, producing a taxonomy of five energy concern categories and 21 optimization techniques, with an analysis of PR acceptance patterns across the AIDev dataset.",
-      "links": []
+      "links": [{"url": "http://dl.acm.org/doi/10.1145/3793302.3793594", "label": "Paper link"}]
     }
   ]
 }

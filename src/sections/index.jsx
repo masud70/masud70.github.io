@@ -333,7 +333,7 @@ function Publications({ data, format }) {
                                 )}
                                 <div className="mt-2 flex flex-wrap items-center gap-2">
                                     {p.status && (
-                                        <span className="rounded border border-accent/30 bg-accent/5 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent">
+                                        <span className="rounded border border-accent/30 bg-accent/5 px-1.5 py-0.5 font-medium text-xs uppercase tracking-wider text-accent">
                                             {p.status}
                                         </span>
                                     )}
@@ -341,13 +341,13 @@ function Publications({ data, format }) {
                                         p.links.map((l, j) => (
                                             <a
                                                 key={j}
-                                                href={l.url}
+                                                href={l.url.startsWith("http://") ? l.url : "http://" + l.url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline"
+                                                className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:bg-accent/20 px-2 rounded border border-accent/30"
                                             >
                                                 {l.label}
-                                                <ExternalLink size={10} />
+                                                <ExternalLink size={12} />
                                             </a>
                                         ))}
                                 </div>
