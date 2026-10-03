@@ -2,22 +2,37 @@
   "format": {
     "section": "experience",
     "label": "Experience",
-    "title": "Professional Experience",
+    "title": "Experience",
     "type": "object"
   },
   "data": {
     "groups": [
       {
-        "heading": "Teaching",
+        "heading": "Professional Experience",
         "items": [
           {
             "role": "Lecturer",
-            "org": "East Delta University",
-            "orgDetail": "Dept. of Computer Science and Engineering · Chittagong, Bangladesh",
+            "org": "Dept. of Computer Science and Engineering",
+            "orgDetail": "East Delta University · Chittagong, Bangladesh",
             "period": "Jan 2025 — Jul 2025",
             "points": [
               "Taught undergraduate computer science courses.",
               "Designed coursework, assessments, and grading criteria."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Leadership Experience",
+        "items": [
+          {
+            "role": "Vice President Media",
+            "org": "Graduate Computer Science Society (GCSS), Dept. of Computer Science",
+            "orgDetail": "University of Manitoba · Winnipeg MB, Canada",
+            "period": "Sep 2026 — Aug 2027",
+            "points": [
+                "Responsible for managing media and communications for the society.",
+                "Responsible for organizing events and workshops for students."
             ]
           }
         ]
