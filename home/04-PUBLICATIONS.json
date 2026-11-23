@@ -1,27 +1,53 @@
 {
-  "format": {
-    "section": "publications", "label": "Publications", "title": "Publications", "type": "array",
-    "note": "<strong>Bold</strong> indicates my name in the author list."
-  },
-  "data": [
-    {
-      "group": "Under Review",
-      "title": "Method-Level Bug Prediction: How Far Are We?",
-      "authors": "Md Nahidul Islam Opu, <strong>Md. Masud Mazumder</strong>, Muhammad Asaduzzaman, Shaiful Chowdhury",
-      "status": "Under Review",
-      "summary": "A realistic method-level bug prediction pipeline combining LLM-based label cleaning, code embeddings, and time-sensitive cross-project evaluation — revealing persistent generalization challenges.",
-      "links": []
+    "format": {
+        "section": "publications",
+        "label": "Publications",
+        "title": "Publications",
+        "type": "array",
+        "note": "<strong>Bold</strong> indicates my name in the author list."
     },
-    {
-      "group": "Conference Papers",
-      "title": "How Do Agentic AI Systems Deal With Software Energy Concerns? A Pull Request-Based Study",
-      "authors": "Tanjum Motin Mitul, <strong>Md. Masud Mazumder</strong>, Shaiful Chowdhury",
-      "venue": "23rd International Conference on Mining Software Repositories (MSR), Challenge Track",
-      "year": "2026",
-      "status": "Accepted",
-      "note": "Equal contribution with the first author",
-      "summary": "Thematic analysis of 216 energy-explicit pull requests in LLM-based coding agents, producing a taxonomy of five energy concern categories and 21 optimization techniques, with an analysis of PR acceptance patterns across the AIDev dataset.",
-      "links": [{"url": "http://dl.acm.org/doi/10.1145/3793302.3793594", "label": "Paper link"}]
-    }
-  ]
+    "data": [
+        {
+            "group": "Under Review",
+            "title": "Does One Model Rule Them All? Energy vs. Quality in Image Generation Models",
+            "authors": "<strong>Md. Masud Mazumder</strong>, Vahab Khoshdel, Shaiful Chowdhury",
+            "venue": "11th International Workshop on Green and Sustainable Software (GREENS'27)",
+            "year": "2027",
+            "status": "Under Review",
+            "summary": "Led a controlled study of energy versus quality in five image generation models (AE, VAE, DCGAN, WGAN-GP and DDPM), showing that the best-quality model is far from the most energy-efficient.",
+            "links": []
+        },
+        {
+            "group": "Under Review",
+            "title": "Software Engineering Education on YouTube: Content, Community, and Reception",
+            "authors": "<strong>Md. Masud Mazumder</strong>, Eddie Antonio Santos, Shaiful Chowdhury",
+            "status": "Under Review",
+            "summary": "Built taxonomies of SE educational content on YouTube and of learners' feedback, then characterized engagement and analyzed gaps between learner needs and available content.",
+            "links": []
+        },
+        {
+            "group": "Under Review",
+            "title": "Method-Level Bug Prediction: How Far Are We?",
+            "authors": "Md Nahidul Islam Opu, <strong>Md. Masud Mazumder</strong>, Muhammad Asaduzzaman, Shaiful Chowdhury",
+            "status": "Under Review",
+            "summary": "A realistic method-level bug prediction pipeline combining LLM-based label cleaning, code embeddings, and time-sensitive cross-project evaluation — revealing persistent generalization challenges.",
+            "links": []
+        },
+        {
+            "group": "Conference Papers",
+            "title": "How Do Agentic AI Systems Deal With Software Energy Concerns? A Pull Request-Based Study",
+            "authors": "Tanjum Motin Mitul, <strong>Md. Masud Mazumder</strong>, Shaiful Chowdhury",
+            "venue": "23rd International Conference on Mining Software Repositories (MSR), Challenge Track",
+            "year": "2026",
+            "status": "Accepted",
+            "note": "Equal contribution with the first author",
+            "summary": "Thematic analysis of 216 energy-explicit pull requests in LLM-based coding agents, producing a taxonomy of five energy concern categories and 21 optimization techniques, with an analysis of PR acceptance patterns across the AIDev dataset.",
+            "links": [
+                {
+                    "url": "http://dl.acm.org/doi/10.1145/3793302.3793594",
+                    "label": "Paper link"
+                }
+            ]
+        }
+    ]
 }
